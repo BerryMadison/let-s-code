@@ -1,0 +1,35 @@
+import random
+
+times_played = 0
+again = "y"
+while again == "y":
+    def game():
+        number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        secret_word = str(random.choice(number))
+        guess = ""
+        guess_count = 0
+        guess_limit = 3
+        out_of_guesses = False
+        while guess != secret_word and not(out_of_guesses):
+            if guess_count < guess_limit:
+                guess = input("from 1 to 10.. what number am i thinking of? ")
+                guess_count += 1
+            else:
+                out_of_guesses = True
+
+
+        if out_of_guesses:
+            print("Looser!!! it was " + str(secret_word))
+        else:
+            print("You Win!")
+
+    if times_played == 0:
+        again = input("Wanna play a guessing game? y/n ")
+        times_played += 1
+    else:
+        again = input("play again? y/n ")
+
+    if again == "y":
+        game()
+    else:
+        print("cya!")
