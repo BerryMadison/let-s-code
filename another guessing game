@@ -1,0 +1,61 @@
+from random import randint
+guess = ""
+count = 0
+check = 0
+num = 0
+# cant put the random choice in while loop coz it rerolls every loop
+# and that is not the point of the game.. but it has to be reset after
+# player guesses right.. so we can call this funktion that is outside
+# the loop..
+def rdm():
+    ram = str(randint(1, 9))
+    return ram
+
+while guess.lower() != "exit":
+    # here we have to call the funktion for the first randint but it is
+    # not allowed to call it again.. therefore an if that will not be repeated
+    # after the first run..
+    if count == 0:
+        count += 1
+        check += 1
+        num = rdm()
+        guess = input("(type exit to exit)\nyo gim num ")
+        if guess.lower() == "exit":
+            print("gg wp!")
+        elif guess < num:
+            print("how low can u go?")
+        elif guess > num:
+            print("high like a kite!")
+        else:
+            print("U got it!")
+            print("it took u 1 attempt?! U a medium?")
+# this is y the starter if wont repeat count never goes back to 0 even if reset
+# same can be observed below..
+            count = 1
+            num = rdm()
+    else:
+        guess = input("yo gim num ")
+        count += 1
+        check += 1
+        if guess.lower() == "exit":
+            print("gg wp!")
+        elif guess < num:
+            print("how low can u go?")
+        elif guess > num:
+            print("high like a kite!")
+# hat to tinker with count -1 as u see below so it all checks out..
+# and this is also y i added check.. on the first run check and count are same
+# but count gets reset and check does not and thats y they are not same after
+# the first run... but as u know count cant be 0 when reset coz it will trigger
+# the starter if and i couldnt leave the count -1 on the first loop coz it messed
+# up the first count...
+        elif count == check:
+            print("U got it!")
+            print("it took u " + str(count) + " attempts to guess right... nice... real nice... ")
+            count = 1
+            num = rdm()
+        else:
+            print("U got it!")
+            print("it took u " + str(count -1) + " attempts to guess right... nice... real nice... ")
+            count = 1
+            num = rdm()
